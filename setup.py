@@ -1,5 +1,4 @@
 from setuptools import setup
-import taxicab as tc
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -9,8 +8,8 @@ with open("requirements.txt", "r") as f:
 
 setup(
     name='Taxicab',
-    version=tc.__version__,
-    author=tc.__author__,
+    version='0.0.3a',
+    author='Nathan A. Rooy',
     author_email='nathanrooy@gmail.com',
     url='https://github.com/nathanrooy/taxicab',
     description='Accurate routing for Open Street Maps and OSMnx',
