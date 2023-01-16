@@ -53,9 +53,22 @@ def compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weigh
     return dist
 
 
-def get_linestring_weight(G, linestring_length, edge_id, weight):
-    weight = get_route_edge_attributes(G, [edge_id], weight)[0]
-    edge_length = get_route_edge_attributes(G, [edge_id], 'length')[0]
+def get_linestring_weight(G, linestring_length, edge_ids, weight):
+    '''
+    Gets the weight of a fraction of an edge (linestring), by its ration to the edge length
+    :param G: networkx.MultiDiGraph
+        input graph
+    :param linestring_length: float
+        length of linestring
+    :param edge_ids:
+        node ids of the edge
+    :param weight:
+        weight that should be applied
+    :return:
+        calculated weight for this linestring
+    '''
+    weight = get_route_edge_attributes(G, edge_ids, weight)[0]
+    edge_length = get_route_edge_attributes(G, edge_ids, 'length')[0]
     return (weight / edge_length) * linestring_length
 
 def get_edge_geometry(G, edge):
