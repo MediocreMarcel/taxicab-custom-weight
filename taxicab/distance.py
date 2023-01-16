@@ -205,7 +205,7 @@ def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None, weight="l
     route_dist = compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge)
     
     # compute total custom weight sum
-    if weight == 'length":
+    if weight == 'length':
         route_weight = route_dist
     else:
         route_weight = compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weight)
