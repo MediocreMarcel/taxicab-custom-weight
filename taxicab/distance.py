@@ -41,11 +41,22 @@ def compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weigh
     if nx_route:
         dist += sum(get_route_edge_attributes(G, nx_route, weight))
     if orig_partial_edge:
-        dist += compute_linestring_length(orig_partial_edge)
+        if weight == 'length':
+            dist += compute_linestring_length(orig_partial_edge)
+        else:
+            dist += get_linestring_weight(compute_linestring_length(orig_partial_edge), nx_route[0], weight):
     if dest_partial_edge:
-        dist += compute_linestring_length(dest_partial_edge)
+        if weight == 'length':
+            dist += dist += compute_linestring_length(dest_partial_edge)
+        else:
+            dist += get_linestring_weight(compute_linestring_length(dest_partial_edge), nx_route[-1], weight):        
     return dist
 
+
+def get_linestring_weight(linestring_length, edge_id, weight):
+    weight = get_route_edge_attributes(G, [edge_id], weight)[0]
+    edge_length = get_route_edge_attributes(G, [edge_id], 'length')[0]
+    return (weight / edge_length) * linestring_length
 
 def get_edge_geometry(G, edge):
     '''
@@ -94,11 +105,13 @@ def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None, weight="l
         the (lat, lng) or (y, x) point representing the origin of the path
     dest_yx : tuple
         the (lat, lng) or (y, x) point representing the destination of the path
+    weight : str
+        Name of col in edge that should be used for routing
     
     Returns
     -------
     tuple
-        (route_dist, route, orig_edge_p, dest_edge_p)
+        (route_dist, route, orig_edge_p, dest_edge_p, route_weight)
     '''
     
     # determine nearest edges
@@ -190,5 +203,11 @@ def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None, weight="l
 
     # compute total path length
     route_dist = compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge)
+    
+    # compute total custom weight sum
+    if weight == 'length":
+        route_weight = route_dist
+    else:
+        route_weight = compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weight)
 
-    return route_dist, nx_route, orig_partial_edge, dest_partial_edge
+    return route_dist, nx_route, orig_partial_edge, dest_partial_edge, route_weight
