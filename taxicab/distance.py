@@ -32,14 +32,14 @@ def compute_linestring_length(ls):
     else: return None
 
 
-def compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge):
+def compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weight='length'):
     '''
     Computes the route complete taxi route length
     '''
 
     dist = 0
     if nx_route:
-        dist += sum(get_route_edge_attributes(G, nx_route, 'length'))
+        dist += sum(get_route_edge_attributes(G, nx_route, weight))
     if orig_partial_edge:
         dist += compute_linestring_length(orig_partial_edge)
     if dest_partial_edge:
@@ -84,7 +84,7 @@ def get_edge_geometry(G, edge):
         (G.nodes[edge[1]]['x'], G.nodes[edge[1]]['y'])])
 
 
-def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None):
+def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None, weight="length"):
     '''
     Parameters
     ----------
@@ -117,7 +117,7 @@ def shortest_path(G, orig_yx, dest_yx, orig_edge=None, dest_edge=None):
     
     # routing across multiple edges
     else:
-        nx_route = nx_shortest_path(G, orig_edge[0], dest_edge[0], 'length')
+        nx_route = nx_shortest_path(G, orig_edge[0], dest_edge[0], weight)
         p_o, p_d = Point(orig_yx[::-1]), Point(dest_yx[::-1])
         orig_geo = get_edge_geometry(G, orig_edge)
         dest_geo = get_edge_geometry(G, dest_edge)
