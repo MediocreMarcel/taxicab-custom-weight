@@ -1,8 +1,4 @@
-[![gh-actions-ci](https://img.shields.io/github/workflow/status/nathanrooy/taxicab/ci?style=flat-square)](https://github.com/nathanrooy/taxicab/actions?query=workflow%3Aci)
-[![GitHub license](https://img.shields.io/github/license/nathanrooy/taxicab?style=flat-square)](https://github.com/nathanrooy/taxicab/blob/main/LICENSE)
-[![codecov](https://img.shields.io/codecov/c/github/nathanrooy/taxicab.svg?style=flat-square)](https://codecov.io/gh/nathanrooy/taxicab)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/taxicab.svg?style=flat-square)](https://pypi.org/pypi/taxicab/)
-[![PyPi Version](https://img.shields.io/pypi/v/taxicab.svg?style=flat-square)](https://pypi.org/project/taxicab)
+#Fork of Taxicab - allows routing/calculating distances with custom weights
 
 ## Taxicab
 When routing between two points of longitude and latitude, the built in routing functionality in <a href="https://github.com/gboeing/osmnx">OSMnx</a> will find the nearest network nodes and route between those. This assumption is fine, and works for many applications but when you need routing with a little more accuracy you'll want to consider using Taxicab. Below are a few examples which highlight Taxicab usecases:
@@ -18,12 +14,9 @@ When routing between two points of longitude and latitude, the built in routing 
 
 ## Installation
 The easiest way to use Taxicab is probably via a PyPi install:
+
 ```sh
-pip install taxicab
-```
-You can also install directly from this repo:
-```sh
-pip install git+https://github.com/nathanrooy/taxicab
+pip install git+https://github.com/MediocreMarcel/taxicab-custom-weight
 ```
 
 ## Example usage
