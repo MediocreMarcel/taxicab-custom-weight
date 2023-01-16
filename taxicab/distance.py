@@ -47,7 +47,7 @@ def compute_taxi_length(G, nx_route, orig_partial_edge, dest_partial_edge, weigh
             dist += get_linestring_weight(compute_linestring_length(orig_partial_edge), nx_route[0], weight)
     if dest_partial_edge:
         if weight == 'length':
-            dist += dist += compute_linestring_length(dest_partial_edge)
+            dist += compute_linestring_length(dest_partial_edge)
         else:
             dist += get_linestring_weight(compute_linestring_length(dest_partial_edge), nx_route[-1], weight)        
     return dist
