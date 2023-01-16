@@ -1,4 +1,4 @@
-#Fork of Taxicab - allows routing/calculating distances with custom weights
+# Fork of Taxicab - allows routing/calculating distances with custom weights
 
 ## Taxicab
 When routing between two points of longitude and latitude, the built in routing functionality in <a href="https://github.com/gboeing/osmnx">OSMnx</a> will find the nearest network nodes and route between those. This assumption is fine, and works for many applications but when you need routing with a little more accuracy you'll want to consider using Taxicab. Below are a few examples which highlight Taxicab usecases:
